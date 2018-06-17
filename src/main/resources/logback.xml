@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+    <!--Spring 日志-->
+    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+    <!--<logger name="org.springframework.web" level="DEBUG"/>-->
+
+    <!--控制台日志-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <Encoding>UTF-8</Encoding>
+        <Target>System.out</Target>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="A" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+        <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
+        <!--for further documentation-->
+        <File>${catalina.home}/logs/HUAFU_log/PurePro_</File>
+        <encoder>
+            <pattern>[HUAFU_sys] %d{yyyy-MM-dd HH:mm:ss} %5p %c{1}:%L : %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.home}/logs/HUAFU_log/PurePro_.%d{yyyy-MM-dd'.log'}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!--&lt;!&ndash;打印SQL语句&ndash;&gt;-->
+    <!--<logger name="java.sql" level="DEBUG">-->
+        <!--&lt;!&ndash;daoFILE为实际定义的appender&ndash;&gt;-->
+        <!--<appender-ref ref="CONSOLE" />-->
+    <!--</logger>-->
+
+    <root level="ERROR">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="A"/>
+    </root>
+
+</configuration>

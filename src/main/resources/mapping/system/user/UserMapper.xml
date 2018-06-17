@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+	<!-- 通过user_id获取数据 -->
+	<select id="queryUserByLoginName" parameterType="io.github.bincool.entity.system.user.User" resultType="io.github.bincool.entity.system.user.User" useCache="false">
+		select
+		USER_ID as userId,
+		<trim suffixOverrides=",">
+			LOGIN_NAME as loginName,
+			LOGIN_PASSWORD as loginPassword,
+			ORGANIZATION_ID as organizationId,
+			SUB_ORGANIZATION_ID as subOrganizationId,
+			TYPE as type,
+			USERNAME as username,
+			MOBILE as mobile,
+			EMAIL as email,
+			LOGIN_IP as loginIp,
+			LOGIN_TIME as loginTime,
+			LOGIN_COUNT as loginCount,
+			STATUS as status,
+			CREATE_TIME as createTime,
+		</trim>
+		from
+		SYS_USER
+		<where>
+			LOGIN_NAME = #{loginName}
+			<if test="status != null and status !=''">
+				and STATUS = #{status}
+			</if>
+		</where>
+	</select>
+
+	<!-- 保存用户信息 -->
+	<insert id="save" parameterType="io.github.bincool.entity.system.user.User" useGeneratedKeys="true" keyProperty="userId">
+		insert into SYS_USER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="loginName != null and loginName !=''">
+				LOGIN_NAME ,
+			</if>
+			<if test="loginPassword != null and loginPassword !=''">
+				LOGIN_PASSWORD ,
+			</if>
+			<if test="organizationId != null and organizationId !=''">
+				ORGANIZATION_ID ,
+			</if>
+			<if test="subOrganizationId != null and subOrganizationId !=''">
+				SUB_ORGANIZATION_ID ,
+			</if>
+			<if test="type != null and type !=''">
+				TYPE ,
+			</if>
+			<if test="username != null and username !=''">
+				USERNAME ,
+			</if>
+			<if test="mobile != null and mobile !=''">
+				MOBILE ,
+			</if>
+			<if test="email != null and email !=''">
+				EMAIL ,
+			</if>
+			<if test="loginIp != null and loginIp !=''">
+				LOGIN_IP ,
+			</if>
+			<if test="loginCount != null and loginCount !=''">
+				LOGIN_COUNT ,
+			</if>
+			CREATE_TIME ,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="loginName != null and loginName !=''">
+				#{loginName} ,
+			</if>
+			<if test="loginPassword != null and loginPassword !=''">
+				#{loginPassword} ,
+			</if>
+			<if test="organizationId != null and organizationId !=''">
+				#{organizationId} ,
+			</if>
+			<if test="subOrganizationId != null and subOrganizationId !=''">
+				#{subOrganizationId} ,
+			</if>
+			<if test="type != null and type !=''">
+				#{type} ,
+			</if>
+			<if test="username != null and username !=''">
+				#{username} ,
+			</if>
+			<if test="mobile != null and mobile !=''">
+				#{mobile} ,
+			</if>
+			<if test="email != null and email !=''">
+				#{email} ,
+			</if>
+			<if test="loginIp != null and loginIp !=''">
+				#{loginIp} ,
+			</if>
+
+			<if test="loginCount != null and loginCount !=''">
+				#{loginCount},
+			</if>
+			CURRENT_TIMESTAMP,
+		</trim>
+	</insert>
+
+	<!-- 编辑用户信息 -->
+	<update id="edit" parameterType="io.github.bincool.entity.system.user.User">
+		update SYS_USER
+		set
+		<trim suffixOverrides=",">
+			<if test="loginName != null and loginName !=''">
+				LOGIN_NAME = #{loginName} ,
+			</if>
+			<if test="loginPassword != null and loginPassword !=''">
+				LOGIN_PASSWORD = #{loginPassword} ,
+			</if>
+			<if test="organizationId != null and organizationId !=''">
+				ORGANIZATION_ID = #{organizationId} ,
+			</if>
+			<if test="subOrganizationId != null and subOrganizationId !=''">
+				SUB_ORGANIZATION_ID = #{subOrganizationId} ,
+			</if>
+			<if test="type != null and type !=''">
+				TYPE = #{type} ,
+			</if>
+			<if test="username != null and username !=''">
+				USERNAME = #{username} ,
+			</if>
+			<if test="mobile != null and mobile !=''">
+				MOBILE = #{mobile} ,
+			</if>
+			<if test="email != null and email !=''">
+				EMAIL = #{email} ,
+			</if>
+			<if test="loginIp != null and loginIp !=''">
+				LOGIN_IP = #{loginIp} ,
+			</if>
+			<if test="loginCount != null and loginCount !=''">
+				LOGIN_COUNT = #{loginCount},
+			</if>
+			<if test="status != null and status !=''">
+				STATUS = #{status} ,
+			</if>
+		</trim>
+		where
+		USER_ID = #{userId}
+	</update>
+
+	<!-- 通过用户ID获取用户信息 -->
+	<select id="selectOne" parameterType="io.github.bincool.entity.system.user.User"
+			resultType="io.github.bincool.entity.system.user.User">
+		select
+		USER_ID as userId,
+		<trim suffixOverrides=",">
+			LOGIN_NAME as loginName,
+			LOGIN_PASSWORD as loginPassword,
+			ORGANIZATION_ID as organizationId,
+			SUB_ORGANIZATION_ID as subOrganizationId,
+			TYPE as type,
+			USERNAME as username,
+			MOBILE as mobile,
+			EMAIL as email,
+			LOGIN_IP as loginIp,
+			LOGIN_TIME as loginTime,
+			LOGIN_COUNT as loginCount,
+			STATUS as status,
+			CREATE_TIME as createTime,
+		</trim>
+		from
+		SYS_USER
+		where
+		USER_ID = #{userId}
+	</select>
+
+</mapper>

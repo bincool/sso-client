@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="sso-client-1.0.0">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="sso-client-1.0.0.jar">
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/java" />
+      <element id="module-output" name="sso-client" />
+    </root>
+  </artifact>
+</component>
