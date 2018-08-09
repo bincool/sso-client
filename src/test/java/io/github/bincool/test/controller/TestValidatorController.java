@@ -1,6 +1,6 @@
 /**
  * Filename: TestTemplateController.java
- * Package: io.github.bincool.testcontroller
+ * Package: io.github.bincool.test.controller
  * Copyright: Wchy-bingV All Rights Reserved.QQ:891946049.
  * Description: TestTemplateController.java
  * Author: wchy.
@@ -8,7 +8,7 @@
  * Content: 新增.
  * Version: V1.0.
  */
-package com.github.bincool.testcontroller;
+package io.github.bincool.test.controller;
 
 import org.junit.Before;
 import org.junit.Test;

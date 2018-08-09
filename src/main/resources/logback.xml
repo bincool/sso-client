@@ -18,12 +18,12 @@
         <!--See http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
         <!--and http://logback.qos.ch/manual/appenders.html#TimeBasedRollingPolicy-->
         <!--for further documentation-->
-        <File>${catalina.home}/logs/HUAFU_log/PurePro_</File>
+        <File>${catalina.home}/logs/sso-client/run_</File>
         <encoder>
-            <pattern>[HUAFU_sys] %d{yyyy-MM-dd HH:mm:ss} %5p %c{1}:%L : %m%n</pattern>
+            <pattern>[io.github.bincool] %d{yyyy-MM-dd HH:mm:ss} %5p %c{1}:%L : %m%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${catalina.home}/logs/HUAFU_log/PurePro_.%d{yyyy-MM-dd'.log'}</fileNamePattern>
+            <fileNamePattern>${catalina.home}/logs/sso-client/run_.%d{yyyy-MM-dd}'.log'</fileNamePattern>
         </rollingPolicy>
     </appender>
 

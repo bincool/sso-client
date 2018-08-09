@@ -71,7 +71,6 @@ public class CasLogoutFilter extends AdviceFilter
             // Do not continue up filter chain
             //cas服务器发送的请求，链接中含有logoutRequest参数，在之前记录的session中设置logoutRequest参数为true
             //因为Subject是和线程是绑定的，所以无法获取登录的Subject直接logout
-
             HANDLER.invalidateSession(req,sessionManager);
 
             return true;

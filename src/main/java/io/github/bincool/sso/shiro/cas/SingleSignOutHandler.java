@@ -44,7 +44,7 @@ public final class SingleSignOutHandler
     /** Parameter name that stores logout request */
     private String logoutParameterName = "logoutRequest";
 
-    private HashMapBackedSessionMappingStorage storage = new HashMapBackedSessionMappingStorage();
+    private BackedTokenSessionStorage storage = new BackedTokenSessionStorage();
 
     protected SingleSignOutHandler()
     {
@@ -134,15 +134,15 @@ public final class SingleSignOutHandler
         final String token = XmlUtils.getTextForElement(logoutMessage, "SessionIndex");
         if (CommonUtils.isNotBlank(token))
         {
-            Serializable sessionId = storage.getSessionIDByMappingId(token);
-            if (sessionId!=null)
+            Serializable sessionId = storage.getSessionIDByToken(token);
+            if (null != sessionId)
             {
                 try
                 {
                     Session session = sessionManager.getSession(new DefaultSessionKey(sessionId));
-                    if(session != null)
+                    if(null != session)
                     {
-                        //设置会话的logoutParameterName 属性表示无效了，这里直接使用了request的参数名
+                        // 设置会话的logoutParameterName 属性表示无效了，这里直接使用了request的参数名.
                         session.setAttribute(logoutParameterName, true);
                         if (log.isDebugEnabled())
                         {
@@ -152,7 +152,6 @@ public final class SingleSignOutHandler
                 }
                 catch (Exception e)
                 {
-
                 }
             }
         }
